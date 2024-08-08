@@ -8,9 +8,9 @@ const char* password = "123456789";
 
 #define sensor A0
 #define led 4
+#define lux A1
 int An_1;
-int sec=0;
-int currentTime=0;
+int An_0;
 bool ledState=LOW;
 void(* resetFunc) (void) = 0;
 
@@ -20,17 +20,23 @@ void handleData();
 void handleMorse();
 
 String readDSTemperatureC() {
-  An_1 = analogRead(sensor);
-  float voltage= An_1 * (3.3/4095.0);
+  An_0 = analogRead(sensor);
+  float voltage= An_0 * (3.3/4095.0);
   float tempC = (voltage - 0.58)/0.007;
   return String(tempC);
 }
 
 String RoundedTemperature(){
-   An_1 = analogRead(sensor);
-  float voltage= An_1 * (3.3/4095.0);
+   An_0 = analogRead(sensor);
+  float voltage= An_0 * (3.3/4095.0);
   int tempR = (voltage - 0.58)/0.007;
   return String(tempR);
+}
+
+String readBrightness(){
+  An_1 = analogRead(lux);
+  float voltage= An_1 * (3.3/4095.0);
+  int lux = -lux*pow(2.71*11.72)*0.79;
 }
 
 void setup() {
