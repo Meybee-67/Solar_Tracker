@@ -73,19 +73,9 @@ void handleData() {
 void handleMorse() {
     String message = server.arg("message");
     Serial.println(message);
-    if ((message.compareTo("OFF"))==0){
-      ledState = LOW;
-      digitalWrite(led,ledState);
-    }
-    else if((message.compareTo("ON"))==0){
-      ledState = HIGH;
-      digitalWrite(led,ledState);
-    }
-    else{
-          digitalWrite(led,LOW);
-          esp_sleep_enable_timer_wakeup(message.toInt()*1000000); //light sleep
-          esp_light_sleep_start();
-          digitalWrite(led,HIGH);
-          resetFunc(); //reset
-        }
+    digitalWrite(led,LOW);
+    esp_sleep_enable_timer_wakeup(message.toInt()*1000000); //light sleep
+    esp_light_sleep_start();
+    digitalWrite(led,HIGH);
+    resetFunc(); //reset
 }
