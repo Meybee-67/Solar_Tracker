@@ -36,7 +36,8 @@ String RoundedTemperature(){
 String readBrightness(){
   An_1 = analogRead(lux);
   float voltage= An_1 * (3.3/4095.0);
-  int lux = -lux*pow(2.71*11.72)*0.79;
+  int lux = -An_1*pow(2.71*11.72)*0.79;
+  return String(lux);
 }
 
 void setup() {
@@ -69,6 +70,7 @@ void handleData() {
   StaticJsonDocument<200> jsonDoc;
   jsonDoc["temperature"] = readDSTemperatureC();
   jsonDoc["rounded temperature"] = RoundedTemperature();
+  jsonDoc["brightness"]= readBrightness();
   String jsonString;
   serializeJson(jsonDoc, jsonString);
   server.sendHeader("Content-Type", "application/json");
