@@ -17,10 +17,10 @@ int servovLimitLow = 15;
 
 // LDR pin connections (photoresistors)
 
-int ldrlt = A2; //LDR top left - BOTTOM LEFT
-int ldrrt = A3; //LDR top rigt - BOTTOM RIGHT 
-int ldrld = A0; //LDR down left - TOP LEFT
-int ldrrd = A1; //ldr down rigt - TOP RIGHT
+#define ldrlt A2 //LDR top left - BOTTOM LEFT
+#define ldrrt A3 //LDR top rigt - BOTTOM RIGHT 
+#define ldrld A0 //LDR down left - TOP LEFT
+#define ldrrd  A1 //ldr down rigt - TOP RIGHT
 
 void setup()
 {
