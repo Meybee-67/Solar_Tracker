@@ -10,3 +10,5 @@ The various functions that this system must perform are:
 I decided to develop a Flutter application that displays the temperature and luminosity, the ESP32 send (via WiFi) each 15 sec a jsonFile with all the data the sensors get.
 The main screen of the application displays these data and the date, on the others screens, there are datatables and realtime charts.
 I also added a time-picker : the user can put the ESP32 in the "Light sleep" mode and decide the time the WiFi will be disabled, in order to save energy when we're not unsing this system, or when there's not enough light.
+
+PS : Please note that this Flutter application is only available on Android. (Sorry, I don't have a McBook...) 
