@@ -45,7 +45,7 @@ void setup() {
   currentTime = millis();
   //initalize led
   pinMode(led,OUTPUT);
-  digitalWrite(led,LOW);
+  digitalWrite(led,HIGH);
 
   //begin server
   Serial.begin(115200);
