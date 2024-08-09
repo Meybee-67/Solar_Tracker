@@ -39,6 +39,7 @@ WebServer server(80);
 void handleData();
 void handleMorse();
 
+//Functions to read temperature
 String readDSTemperatureC() {
   An_1 = analogRead(sensor);
   float voltage= An_1 * (3.3/4095.0);
@@ -51,4 +52,12 @@ String RoundedTemperature(){
   float voltage= An_1 * (3.3/4095.0);
   int tempR = (voltage - 0.58)/0.007;
   return String(tempR);
+}
+
+//Function to read brightness
+String readBrightness(){
+  An_1 = analogRead(lux);
+  float voltage= An_1 * (3.3/4095.0);
+  int lux = -An_1*pow(2.71*11.72)*0.79;
+  return String(lux);
 }
