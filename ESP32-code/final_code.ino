@@ -88,3 +88,22 @@ void setup() {
   Serial.println("Server started");
 }
 
+void loop() 
+{
+  int lt = analogRead(ldrlt); // Top left
+  int rt = analogRead(ldrrt); // Top right
+  int ld = analogRead(ldrld); // Down left
+  int rd = analogRead(ldrrd); // Down rigt
+  
+  // read potentiometers  
+  int dtime = 10; //analogRead(4)/20;
+  int tol = 50; //analogRead(5)/4;
+  
+  int avt = (lt + rt) / 2; // Average value top
+  int avd = (ld + rd) / 2; // Average value down
+  int avl = (lt + ld) / 2; // Average value left
+  int avr = (rt + rd) / 2; // Average value right
+
+  int dvert = avt - avd; // Check the diffirence of up and down
+  int dhoriz = avl - avr;// Check the diffirence og left and rigt
+}
