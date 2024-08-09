@@ -171,9 +171,7 @@ void handleData() {
 void handleMorse() {
     String message = server.arg("message");
     Serial.println(message);
-    digitalWrite(led,LOW);
     esp_sleep_enable_timer_wakeup(message.toInt()*1000000); //light sleep
     esp_light_sleep_start();
-    digitalWrite(led,HIGH);
     resetFunc(); //reset
 }
