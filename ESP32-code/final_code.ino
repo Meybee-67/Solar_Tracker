@@ -60,3 +60,20 @@ String readBrightness(){
   int lux = -An_1*pow(2.71*11.72)*0.79;
   return String(lux);
 }
+
+void setup() {
+  
+  //Begin server
+  Serial.begin(115200);
+  Serial.print("Connecting to WiFi");
+  WiFi.softAP(ssid, password);
+  Serial.println("Hotspot WiFi démarré");
+  Serial.print("IP Address: ");
+  Serial.println(WiFi.softAPIP());
+  server.on("/data", HTTP_GET, handleData);
+  server.on("/morse", HTTP_POST, handleMorse);
+
+  server.begin();
+  Serial.println("Server started");
+}
+
