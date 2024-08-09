@@ -53,7 +53,18 @@ void loop()
 
   int dvert = avt - avd; // check the diffirence of up and down
   int dhoriz = avl - avr;// check the diffirence og left and rigt
-  
+
+  int avg_list = {avt,avd,avl,avr};
+  //Calculate the real brightness
+  String getBrghtness(int list{}){
+  int max_list = list[0];
+  for (byte i = 0; i < sizeof(avg_list); i+=1){
+    if(max_list<list[i]){
+      max_list = list[i];
+      }
+    }
+    return(String(max_list));
+  }
    
   if (-1*tol > dvert || dvert > tol) // check if the diffirence is in the tolerance else change vertical angle
   {
