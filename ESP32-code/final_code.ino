@@ -1,12 +1,14 @@
 #include <WiFi.h>
 #include <WebServer.h>
 #include <ArduinoJson.h>
+#include <Servo.h>
 
 
 // Replace with your network credentials
 const char* ssid = "Access-point";
 const char* password = "123456789";
 
+//Define sensors & variables
 #define sensor A0
 #define led 4
 int An_1;
