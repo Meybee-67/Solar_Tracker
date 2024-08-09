@@ -54,6 +54,17 @@ String RoundedTemperature(){
   return String(tempR);
 }
 
+//Function to get brightness
+String getAvgBrightness(int list[]){
+  int max_list = list[0];
+  for (byte i = 0; i < sizeof(list); i+=1){
+    if(max_list<list[i]){
+      max_list = list[i];
+      }
+    }
+    return(String(max_list));
+  }
+
 //Function to read brightness
 String readBrightness(){
   An_1 = getAvgBrightness(avg_list).toInt();
