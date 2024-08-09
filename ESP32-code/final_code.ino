@@ -107,3 +107,26 @@ void loop()
   int dvert = avt - avd; // Check the diffirence of up and down
   int dhoriz = avl - avr;// Check the diffirence og left and rigt
 }
+
+//Send data to server
+void handleData() {
+  StaticJsonDocument<200> jsonDoc;
+  jsonDoc["temperature"] = readDSTemperatureC();
+  jsonDoc["rounded temperature"] = RoundedTemperature();
+  jsonDoc["brightness"]= readBrightness();
+  String jsonString;
+  serializeJson(jsonDoc, jsonString);
+  server.sendHeader("Content-Type", "application/json");
+  server.send(200, "application/json", jsonString);
+}
+
+//Get data from ESP32
+void handleMorse() {
+    String message = server.arg("message");
+    Serial.println(message);
+    digitalWrite(led,LOW);
+    esp_sleep_enable_timer_wakeup(message.toInt()*1000000); //light sleep
+    esp_light_sleep_start();
+    digitalWrite(led,HIGH);
+    resetFunc(); //reset
+}
