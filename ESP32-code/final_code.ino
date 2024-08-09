@@ -9,7 +9,6 @@ const char* ssid = "Access-point";
 const char* password = "123456789";
 
 //Define sensors & variables
-
 #define sensor A0
 
 // LDR pin connections (photoresistors)
