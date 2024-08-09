@@ -54,21 +54,7 @@ void loop()
   int dvert = avt - avd; // check the diffirence of up and down
   int dhoriz = avl - avr;// check the diffirence og left and rigt
   
-  
-  Serial.print(avt);
-  Serial.print(" ");
-  Serial.print(avd);
-  Serial.print(" ");
-  Serial.print(avl);
-  Serial.print(" ");
-  Serial.print(avr);
-  Serial.print("   ");
-  Serial.print(dtime);
-  Serial.print("   ");
-  Serial.print(tol);
-  Serial.println(" ");
-  
-    
+   
   if (-1*tol > dvert || dvert > tol) // check if the diffirence is in the tolerance else change vertical angle
   {
   if (avt > avd)
