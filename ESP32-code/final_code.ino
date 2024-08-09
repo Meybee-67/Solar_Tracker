@@ -56,7 +56,7 @@ String RoundedTemperature(){
 
 //Function to read brightness
 String readBrightness(){
-  An_1 = analogRead(lux);
+  An_1 = getAvgBrightness(avg_list).toInt();
   float voltage= An_1 * (3.3/4095.0);
   int lux = -An_1*pow(2.71*11.72)*0.79;
   return String(lux);
