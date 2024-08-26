@@ -2,6 +2,17 @@
 #include <WebServer.h>
 #include <ArduinoJson.h>
 #include <Servo.h>
+#include <Wire.h>
+#include "DFRobot_INA219.h"
+
+//Define I2C bus
+DFRobot_INA219_IIC     ina219(&Wire, INA219_I2C_ADDRESS4);
+
+// Revise the following two paramters according to actula reading of the INA219 and the multimeter
+// for linearly calibration
+float ina219Reading_mA = 1000;
+float extMeterReading_mA = 1000;
+
 
 
 // Replace with your network credentials
