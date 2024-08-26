@@ -83,6 +83,10 @@ String readBrightness(){
 }
 
 void setup() {
+
+  //Begin I2C
+  Wire.begin();
+  ina219.linearCalibrate(ina219Reading_mA, extMeterReading_mA);
   
   //Begin server
   Serial.begin(115200);
@@ -171,6 +175,7 @@ void handleData() {
   jsonDoc["temperature"] = readDSTemperatureC();
   jsonDoc["rounded temperature"] = RoundedTemperature();
   jsonDoc["brightness"]= readBrightness();
+  jsonDoc["voltage"]= ina219.getBusVoltage_V();
   String jsonString;
   serializeJson(jsonDoc, jsonString);
   server.sendHeader("Content-Type", "application/json");
