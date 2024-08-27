@@ -55,3 +55,41 @@ void checkClient(){
     Serial.println("client connected");
   }
 }
+
+String getAvgBrightness(int list[]){
+  int max_list = list[0];
+  for (byte i = 0; i < sizeof(list); i+=1){
+    if(max_list<list[i]){
+      max_list = list[i];
+      }
+    }
+    return(String(max_list));
+  }
+
+//Function to read brightness
+String readBrightness(){
+  int An_1 = getAvgBrightness(avg_list).toInt();
+  int lux = -An_1*pow(2.71*11.72)*0.79;
+  return String(lux);
+}
+
+void setup() {
+
+  //Begin I2C
+  Wire.begin();
+  ina219.linearCalibrate(ina219Reading_mA, extMeterReading_mA);
+  
+  //Begin server
+  Serial.begin(115200);
+  Serial.print("Connecting to WiFi");
+  WiFi.softAP(ssid, password);
+  Serial.println("Hotspot WiFi démarré");
+  Serial.print("IP Address: ");
+  Serial.println(WiFi.softAPIP());
+  server.on("/data", HTTP_GET, handleData);
+  server.on("/morse", HTTP_POST, handleMorse);
+
+  server.begin();
+  Serial.println("Server started");
+}
+
