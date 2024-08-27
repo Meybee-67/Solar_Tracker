@@ -19,6 +19,12 @@ const char* password = "123456789";
 
 #define sensor A0
 #define led 4
+// LDR pin connections (photoresistors)
+#define ldrlt A2 //LDR top left - BOTTOM LEFT
+#define ldrrt A3 //LDR top rigt - BOTTOM RIGHT 
+#define ldrld A6 //LDR down left - TOP LEFT
+#define ldrrd  A1 //ldr down rigt - TOP RIGHT
+
 int An_1;
 void(* resetFunc) (void) = 0;
 
