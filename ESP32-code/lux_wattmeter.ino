@@ -122,4 +122,10 @@ void handleMorse() {
     resetFunc(); //reset
 }
 
-void loop(){}
+void loop(){
+  int lt = analogRead(ldrlt); // Top left
+  int rt = analogRead(ldrrt); // Top right
+  int ld = analogRead(ldrld); // Down left
+  int rd = analogRead(ldrrd); // Down rigt
+  avg_list = getAvgBrightness([lt,rt,ld,rd]);
+}
