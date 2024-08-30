@@ -78,7 +78,7 @@ String getAvgBrightness(int list[]){
 //Function to read brightness
 String readBrightness(){
   int An_2 = getAvgBrightness(avg_list).toInt();
-  float V_out= An_2*3.3/1024;
+  float V_out= An_2*3.3/4095;
   float R = 10000*(3.3-V_out)/v_out;
   int lux = -R*pow(2.71*11.72)*0.79;
   return String(lux);
