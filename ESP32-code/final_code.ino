@@ -14,7 +14,6 @@ float ina219Reading_mA = 1000;
 float extMeterReading_mA = 1000;
 
 
-
 // Replace with your network credentials
 const char* ssid = "Access-point";
 const char* password = "123456789";
@@ -42,6 +41,7 @@ int servovLimitLow = 15;
 
 //Initialize temperature sensor
 int An_1;
+int avg_list[4];
 void(* resetFunc) (void) = 0;
 
 WebServer server(80);
@@ -77,8 +77,10 @@ String getAvgBrightness(int list[]){
 
 //Function to read brightness
 String readBrightness(){
-  int An_1 = getAvgBrightness(avg_list).toInt();
-  int lux = -An_1*pow(2.71*11.72)*0.79;
+  int An_2 = getAvgBrightness(avg_list).toInt();
+  float V_out= An_2*3.3/1024;
+  float R = 10000*(3.3-V_out)/v_out;
+  int lux = -R*pow(2.71*11.72)*0.79;
   return String(lux);
 }
 
@@ -108,6 +110,10 @@ void loop()
   int rt = analogRead(ldrrt); // Top right
   int ld = analogRead(ldrld); // Down left
   int rd = analogRead(ldrrd); // Down rigt
+  avg_list[0]=lt;
+  avg_list[1]=rt;
+  avg_list[2]=ld;
+  avg_list[3]=rd;
   
   // read potentiometers  
   int dtime = 10; //analogRead(4)/20;
