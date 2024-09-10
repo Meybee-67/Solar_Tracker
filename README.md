@@ -1,4 +1,4 @@
-#Solar tracker and thermometer
+# Solar tracker and thermometer
 
 This project is a starting point for a Flutter Apllication software which will be used for a Solar-tracker system.
 This system will fulfil two main fuctions :
