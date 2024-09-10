@@ -41,8 +41,7 @@ String readBrightness(){
 }
 
 void setup() {
-
-  currentTime = millis();
+  
   //initalize led
   pinMode(led,OUTPUT);
   digitalWrite(led,HIGH);
