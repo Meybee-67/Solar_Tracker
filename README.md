@@ -7,4 +7,5 @@ This system will fulfil two main fuctions :
   
 - to orient itself according to brightness
 
-The ESP32 card send data (via WiFi) to the app every 30s in a Json file and the App displays the sensor readings. It also warns you if you're not connected to the Access Point (AP) of the electronic card. 
+The ESP32 card send data (via WiFi) to the app every 30s in a Json file and the App displays the sensor readings. I also added some functionalities like a data table and a graphic which allows you to see the evolution of temperature and brightness. 
+It also warns you if you're not connected to the Access Point (AP) of the electronic card. 
