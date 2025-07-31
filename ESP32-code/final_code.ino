@@ -46,8 +46,8 @@ void(* resetFunc) (void) = 0;
 
 WebServer server(80);
 
+void SendData();
 void handleData();
-void handleMorse();
 
 //Functions to read temperature
 String readDSTemperatureC() {
@@ -176,7 +176,7 @@ void loop()
 }
 
 //Send data to server
-void handleData() {
+void SendData(){
   StaticJsonDocument<200> jsonDoc;
   jsonDoc["temperature"] = readDSTemperatureC();
   jsonDoc["rounded temperature"] = RoundedTemperature();
@@ -191,7 +191,7 @@ void handleData() {
 }
 
 //Get data from ESP32
-void handleMorse() {
+void handleData() {
     String message = server.arg("message");
     Serial.println(message);
     esp_sleep_enable_timer_wakeup(message.toInt()*1000000); //light sleep
