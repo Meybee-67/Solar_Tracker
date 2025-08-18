@@ -3,16 +3,6 @@
 #include <ArduinoJson.h>
 #include <Servo.h>
 #include <Wire.h>
-#include "DFRobot_INA219.h"
-
-//Define I2C bus
-DFRobot_INA219_IIC     ina219(&Wire, INA219_I2C_ADDRESS4);
-
-// Revise the following two paramters according to actula reading of the INA219 and the multimeter
-// for linearly calibration
-float ina219Reading_mA = 1000;
-float extMeterReading_mA = 1000;
-
 
 // Replace with your network credentials
 const char* ssid = "Access-point";
@@ -38,6 +28,8 @@ int servoh = 90;
 int servov = 90; 
 int servovLimitHigh = 120;
 int servovLimitLow = 15;
+int downright;
+int waittime = 1;
 
 //Initialize temperature sensor
 int An_1;
