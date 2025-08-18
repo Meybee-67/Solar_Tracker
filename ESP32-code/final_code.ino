@@ -28,8 +28,6 @@ int servoh = 90;
 int servov = 90; 
 int servovLimitHigh = 120;
 int servovLimitLow = 15;
-int downright;
-int waittime = 1;
 
 //Initialize temperature sensor
 int An_1;
