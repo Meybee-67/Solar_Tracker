@@ -14,7 +14,7 @@ const char* password = "123456789";
 // LDR pin connections (photoresistors)
 #define ldrlt A2 //LDR top left - BOTTOM LEFT
 #define ldrrt A3 //LDR top rigt - BOTTOM RIGHT 
-#define ldrld A6 //LDR down left - TOP LEFT
+#define ldrld A4 //LDR down left - TOP LEFT
 #define ldrrd  A1 //ldr down rigt - TOP RIGHT
 
 // 180 horizontal & vertical angle MAX
@@ -75,6 +75,10 @@ String readBrightness(){
 }
 
 void setup() {
+
+  //Initialize servos
+  vertical.attach(9);
+  horizontal.attach(10);
 
   //Begin server
   Serial.begin(115200);
