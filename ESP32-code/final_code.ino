@@ -76,10 +76,6 @@ String readBrightness(){
 
 void setup() {
 
-  //Begin I2C
-  Wire.begin();
-  ina219.linearCalibrate(ina219Reading_mA, extMeterReading_mA);
-  
   //Begin server
   Serial.begin(115200);
   Serial.print("Connecting to WiFi");
@@ -171,9 +167,6 @@ void SendData(){
   jsonDoc["temperature"] = readDSTemperatureC();
   jsonDoc["rounded temperature"] = RoundedTemperature();
   jsonDoc["brightness"]= readBrightness();
-  jsonDoc["voltage"]= ina219.getBusVoltage_V();
-  jsonDoc["current"]=ina219.getCurrent_mA();
-  jsonDoc["power"]=ina219.getPower_mW();
   String jsonString;
   serializeJson(jsonDoc, jsonString);
   server.sendHeader("Content-Type", "application/json");
