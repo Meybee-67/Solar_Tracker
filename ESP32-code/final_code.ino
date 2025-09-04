@@ -26,8 +26,8 @@ Servo horizontal;
 Servo vertical;
 int servoh = 90; 
 int servov = 90; 
-int servovLimitHigh = 120;
-int servovLimitLow = 15;
+int servovLimitHigh = 180;
+int servovLimitLow = 90;
 
 //Initialize temperature sensor
 int An_1;
@@ -79,6 +79,8 @@ void setup() {
   //Initialize servos
   vertical.attach(9);
   horizontal.attach(10);
+  horizontal.write(180);
+  vertical.write(0);
 
   //Begin server
   Serial.begin(115200);
