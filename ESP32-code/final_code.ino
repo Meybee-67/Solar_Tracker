@@ -19,7 +19,8 @@ const char* password = "123456789";
 
 // 180 horizontal & vertical angle MAX
 int servohLimitHigh = 180;
-int servohLimitLow = 180;
+int servohLimitLow = 90;
+
 
 //Initialize the two servos
 Servo horizontal;
@@ -54,32 +55,13 @@ String RoundedTemperature(){
   return String(tempR);
 }
 
-//Function to get brightness
-String getAvgBrightness(int list[]){
-  int max_list = list[0];
-  for (byte i = 0; i < sizeof(list); i+=1){
-    if(max_list<list[i]){
-      max_list = list[i];
-      }
-    }
-    return(String(max_list));
-  }
-
-//Function to read brightness
-String readBrightness(){
-  int An_2 = getAvgBrightness(avg_list).toInt();
-  float V_out= An_2*3.3/4095;
-  float R = 10000*(3.3-V_out)/v_out;
-  int lux = -R*pow(2.71*11.72)*0.79;
-  return String(lux);
-}
-
 void setup() {
 
   //Initialize servos
   vertical.attach(9);
   horizontal.attach(10);
   horizontal.write(180);
+  servoh = 180;           // synchroniser la variable
   vertical.write(0);
 
   //Begin server
@@ -140,30 +122,21 @@ void loop()
   vertical.write(servov);
   }
   
-  if (-1*tol > dhoriz || dhoriz > tol) // check if the diffirence is in the tolerance else change horizontal angle
-  {
-  if (avl > avr)
-  {
-    servoh = --servoh;
-    if (servoh < servohLimitLow)
-    {
-    servoh = servohLimitLow;
+  if (-1 * tol > dhoriz || dhoriz > tol) {
+  if (avl > avr) {
+    servoh = --servoh; // aller vers la droite
+    if (servoh < servohLimitLow) {
+      servoh = servohLimitLow;
+    }
+  } else if (avl < avr) {
+    servoh = ++servoh; // aller vers la gauche
+    if (servoh > servohLimitHigh) {
+      servoh = servohLimitHigh;
     }
   }
-  else if (avl < avr)
-  {
-    servoh = ++servoh;
-     if (servoh > servohLimitHigh)
-     {
-     servoh = servohLimitHigh;
-     }
-  }
-  else if (avl = avr)
-  {
-    // nothing
-  }
   horizontal.write(servoh);
-  }
+}
+
    delay(dtime);
 }
 
@@ -171,8 +144,6 @@ void loop()
 void SendData(){
   StaticJsonDocument<200> jsonDoc;
   jsonDoc["temperature"] = readDSTemperatureC();
-  jsonDoc["rounded temperature"] = RoundedTemperature();
-  jsonDoc["brightness"]= readBrightness();
   String jsonString;
   serializeJson(jsonDoc, jsonString);
   server.sendHeader("Content-Type", "application/json");
