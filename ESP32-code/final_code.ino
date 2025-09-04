@@ -106,18 +106,16 @@ void loop()
   if (avt > avd)
   {
     servov = ++servov;
-     if (servov > servovLimitHigh) 
-     { 
+     if (servov > servovLimitHigh) { 
       servov = servovLimitHigh;
      }
   }
   else if (avt < avd)
   {
     servov= --servov;
-    if (servov < servovLimitLow)
-  {
+    if (servov < servovLimitLow){
     servov = servovLimitLow;
-  }
+    }
   }
   vertical.write(servov);
   }
@@ -136,7 +134,6 @@ void loop()
   }
   horizontal.write(servoh);
 }
-
    delay(dtime);
 }
 
