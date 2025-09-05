@@ -71,14 +71,15 @@ void setup() {
   Serial.println("Hotspot WiFi démarré");
   Serial.print("IP Address: ");
   Serial.println(WiFi.softAPIP());
-  server.on("/data", HTTP_GET, handleData);
-
+  server.on("/sleep", HTTP_GET, handleData);
+  server.on("/data", HTTP_GET, SendData);
   server.begin();
   Serial.println("Server started");
 }
 
 void loop() 
 {
+  server.handleClient();
   int lt = analogRead(ldrlt); // Top left
   int rt = analogRead(ldrrt); // Top right
   int ld = analogRead(ldrld); // Down left
