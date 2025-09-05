@@ -20,15 +20,15 @@ const char* password = "123456789";
 // 180 horizontal & vertical angle MAX
 int servohLimitHigh = 180;
 int servohLimitLow = 90;
-
+int servovLimitHigh = 180;
+int servovLimitLow = 0;
 
 //Initialize the two servos
 Servo horizontal;
 Servo vertical;
 int servoh = 90; 
 int servov = 90; 
-int servovLimitHigh = 180;
-int servovLimitLow = 90;
+
 
 //Initialize temperature sensor
 int An_1;
@@ -62,7 +62,7 @@ void setup() {
   horizontal.attach(10);
   horizontal.write(180);
   servoh = 180;           // synchroniser la variable
-  vertical.write(0);
+  vertical.write(90);
 
   //Begin server
   Serial.begin(115200);
@@ -72,7 +72,6 @@ void setup() {
   Serial.print("IP Address: ");
   Serial.println(WiFi.softAPIP());
   server.on("/data", HTTP_GET, handleData);
-  server.on("/morse", HTTP_POST, handleMorse);
 
   server.begin();
   Serial.println("Server started");
