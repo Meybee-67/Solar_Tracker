@@ -55,6 +55,10 @@ String RoundedTemperature(){
   return String(tempR);
 }
 
+String readBrightness(){
+  
+}
+
 void setup() {
 
   //Initialize servos
