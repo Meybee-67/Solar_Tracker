@@ -44,7 +44,7 @@ void handleData();
 String readDSTemperatureC() {
   An_1 = analogRead(sensor);
   float voltage= An_1 * (3.3/4095.0);
-  float tempC = (voltage - 0.58)/0.007;
+  float tempC = (voltage - 0.39)/0.0069;
   return String(tempC);
 }
 
