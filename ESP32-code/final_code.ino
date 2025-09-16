@@ -51,7 +51,7 @@ String readDSTemperatureC() {
 String RoundedTemperature(){
    An_1 = analogRead(sensor);
   float voltage= An_1 * (3.3/4095.0);
-  int tempR = (voltage - 0.58)/0.007;
+  int tempR = (voltage - 0.39)/0.0069;
   return String(tempR);
 }
 
