@@ -26,7 +26,7 @@ int servovLimitLow = 0;
 //Initialize the two servos
 Servo horizontal;
 Servo vertical;
-int servoh = 0; 
+int servoh = 180; 
 int servov = 90; 
 
 
