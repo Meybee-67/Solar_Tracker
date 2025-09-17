@@ -55,7 +55,6 @@ String RoundedTemperature(){
   return String(tempR);
 }
 
-
 String readBrightness(int list){
   int min_list = list[0];
   for (byte i = 0; i < sizeof(list); i+=1){
@@ -154,7 +153,7 @@ void loop()
 void SendData(){
   StaticJsonDocument<200> jsonDoc;
   jsonDoc["temperature"] = readDSTemperatureC();
-  jsonDoc["brightness"]=readBrightness();
+  jsonDoc["brightness"]=readBrightness(avg_list);
   String jsonString;
   serializeJson(jsonDoc, jsonString);
   server.sendHeader("Content-Type", "application/json");
