@@ -4,6 +4,8 @@
 #define ldrld A0 //LDR down left - TOP LEFT
 #define ldrrd  A1 //ldr down rigt - TOP RIGHT
 
+int avg_list[4];
+
 void setup()
 {
   Serial.begin(9600);
