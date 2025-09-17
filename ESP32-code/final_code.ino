@@ -62,8 +62,9 @@ String readBrightness(int list){
       min_list = list[i];
       }
     }
-    int An_2= min_list*(3.3/4095.0);
-    int brightness = exp(11.72)*pow(An_2,-0.79);
+    float Vout = min_list*(3.3/4095.0);
+    int RLDR = 10000.0 * (Vout / (3.3- Vout));
+    int brightness = exp(11.72)*pow(RLDR,-0.79);
     return(String(brightness));
 }
 
