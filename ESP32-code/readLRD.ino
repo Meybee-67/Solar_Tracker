@@ -17,6 +17,11 @@ void loop()
   int rt = analogRead(ldrrt); // top right
   int ld = analogRead(ldrld); // down left
   int rd = analogRead(ldrrd); // down rigt
+  avg_list[0]=lt;
+  avg_list[1]=rt;
+  avg_list[2]=ld;
+  avg_list[3]=rd;
+
   
   
 
