@@ -114,36 +114,31 @@ void loop()
   int dvert = avt - avd; // Check the diffirence of up and down
   int dhoriz = avl - avr;// Check the diffirence og left and rigt
 
-  if (-1*tol > dvert || dvert > tol) // check if the diffirence is in the tolerance else change vertical angle
-  {
-  if (avt > avd)
-  {
-    servov = ++servov;
-     if (servov > servovLimitHigh) { 
-      servov = servovLimitHigh;
-     }
-  }
-  else if (avt < avd)
-  {
-    servov= --servov;
-    if (servov < servovLimitLow){
-    servov = servovLimitLow;
-    }
+  if (abs(dvert) > tol) {
+  if (avt < avd) {  
+    // Haut plus lumineux → monter
+    servov++;
+    if (servov > servovLimitHigh) servov = servovLimitHigh;
+  } 
+  else if (avt > avd) {  
+    // Bas plus lumineux → descendre
+    servov--;
+    if (servov < servovLimitLow) servov = servovLimitLow;
   }
   vertical.write(servov);
-  }
-  
-  if (-1 * tol > dhoriz || dhoriz > tol) {
-  if (avl > avr) {
-    servoh = --servoh; // aller vers la droite
-    if (servoh < servohLimitLow) {
-      servoh = servohLimitLow;
-    }
-  } else if (avl < avr) {
-    servoh = ++servoh; // aller vers la gauche
-    if (servoh > servohLimitHigh) {
-      servoh = servohLimitHigh;
-    }
+}
+
+// Correction horizontale
+if (abs(dhoriz) > tol) {
+  if (avl < avr) {  
+    // Gauche plus lumineux → tourner à gauche
+    servoh++;
+    if (servoh > servohLimitHigh) servoh = servohLimitHigh;
+  } 
+  else if (avl > avr) {  
+    // Droite plus lumineux → tourner à droite
+    servoh--;
+    if (servoh < servohLimitLow) servoh = servohLimitLow;
   }
   horizontal.write(servoh);
 }
