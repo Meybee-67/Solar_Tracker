@@ -57,10 +57,6 @@ String RoundedTemperature(){
 
 
 String readBrightness(int list){
-  list[0]=avt;
-  list[1]=avd;
-  list[2]=avl;
-  list[3]=avr;
   int min_list = list[0];
   for (byte i = 0; i < sizeof(list); i+=1){
     if(min_list<list[i]){
